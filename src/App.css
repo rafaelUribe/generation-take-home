@@ -9,10 +9,6 @@
   color: white;
 }
 
-.map{
-  height: 500px;
-}
-
 .info-window{
   color: black;
 }
@@ -22,7 +18,8 @@
 }
 
 .map{
-  min-height: 500px;
+
+  min-height: 400px;
 }
 
 select{
@@ -31,4 +28,9 @@ select{
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.loader{
+  margin-top: 50px;
+  min-height: 500px;
 }

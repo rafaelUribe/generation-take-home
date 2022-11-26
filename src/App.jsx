@@ -1,7 +1,6 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import { useContext,useEffect, useState } from 'react';
-import Map from './components/Map';
+import { useEffect, useState } from 'react';
 import stores from './data/store_directory.json'
 import LocationsList from './components/LocationsList';
 import formatAddress from './utils/formatAddress';
@@ -25,6 +24,8 @@ function App() {
   const [mapsURL, setMapsURL] = useState("")
 
   const [favMode, setFavMode] = useState(false);
+
+  const [loading, setLoading] = useState(0);
 
   const APIKEY = "AIzaSyBc_DeOHpcrucKFgd6dlXkRkRJLMXq27Sw"
 
@@ -65,7 +66,7 @@ function App() {
 
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem("locations"))
-    if(localData.length < 1){
+    if(localData === null){
       console.log("calling from")
       getStores()
     } else {
@@ -112,8 +113,19 @@ function App() {
     <div className="App container-fluid p-0">
         {
           storeLocations.length < 1 &&
-          <div>
-            Loading... please wait
+          <div className='container-sm loader'>
+            <div className='row text-center'>
+              <div className='col-12'>
+                <h3>
+                  Loading... please wait
+                </h3>
+              </div>
+              <div className='col-12'>
+                <p>
+                 Getting data from maps api
+                </p>
+              </div>
+            </div>
           </div>    
         }
         {
